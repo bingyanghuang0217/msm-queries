@@ -8,4 +8,15 @@ class DirectorsController < ApplicationController
     @the_director = matching_records.at(0)
     render({:template => "director_templates/details"})
   end  
+
+  def direct_filter_y
+    @youngest_director = Director.where.not(dob: nil).order(dob: :desc).first
+    render({ :template => "director_templates/young"})
+  end
+
+  def direct_filter_o
+    @oldest_director = Director.where.not(dob: nil).order(dob: :asc).first
+    render({ :template => "director_templates/old"})
+  end
+
 end
